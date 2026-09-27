@@ -1,8 +1,6 @@
 # Slime Dungeon Survivor
 
-A 2D browser roguelite built with Phaser 3 + TypeScript. You are a slimey blob with a sword,
-fighting through escalating dungeon rounds. Enemies drop coins; spend them on upgrades in
-the marketplace between rounds.
+A 2D browser roguelite built with Phaser 3 + TypeScript. You are a slimey blob with a sword, fighting through escalating dungeon rounds. Enemies drop coins; spend them on upgrades in the marketplace between rounds.
 
 ## Controls
 
