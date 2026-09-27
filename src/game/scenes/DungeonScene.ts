@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { GAME_WIDTH, GAME_HEIGHT } from '../config';
 import { ensureTextures } from '../textures';
 import { runState, resetRun } from '../state/RunState';
-import { buildWave, isBossRound } from '../data/waves';
+import { buildWave } from '../data/waves';
 import { Player } from '../entities/Player';
 import { Enemy } from '../entities/Enemy';
 import { UPGRADES, Upgrade } from '../data/upgrades';
@@ -16,7 +16,6 @@ export class DungeonScene extends Phaser.Scene {
   private projectiles!: Phaser.Physics.Arcade.Group;
   private arrows!: Phaser.Physics.Arcade.Group;
   private coins!: Phaser.Physics.Arcade.Group;
-  private powerCores!: Phaser.Physics.Arcade.Group;
   private minionSprites: Phaser.GameObjects.Image[] = [];
   private aura?: Phaser.GameObjects.Arc;
   private worldFloor?: Phaser.GameObjects.TileSprite;
@@ -41,8 +40,6 @@ export class DungeonScene extends Phaser.Scene {
   private dashCooldown = 0;
   private dashUntil = 0;
   private dashShieldUntil = 0;
-  private lowHealthOverlay!: Phaser.GameObjects.Rectangle;
-  private lowHealthPulse?: Phaser.Tweens.Tween;
 
   constructor() {
     super('DungeonScene');
@@ -78,7 +75,6 @@ export class DungeonScene extends Phaser.Scene {
     this.projectiles = this.physics.add.group();
     this.arrows = this.physics.add.group();
     this.coins = this.physics.add.group();
-    this.powerCores = this.physics.add.group();
     this.createMinions();
     if (runState.radioactiveRadius > 0) {
       this.aura = this.add
@@ -99,9 +95,6 @@ export class DungeonScene extends Phaser.Scene {
     });
     this.physics.add.overlap(this.player, this.coins, (_p, coin) => {
       this.collectCoin(coin as Phaser.Physics.Arcade.Image);
-    });
-    this.physics.add.overlap(this.player, this.powerCores, (_p, core) => {
-      this.collectPowerCore(core as Phaser.Physics.Arcade.Image);
     });
     this.physics.add.overlap(this.arrows, this.enemies, (arrow, enemy) => {
       this.onArrowHit(arrow as Phaser.Physics.Arcade.Image, enemy as Enemy);

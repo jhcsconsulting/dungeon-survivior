@@ -13,7 +13,7 @@ export class MenuScene extends Phaser.Scene {
     ensureTextures(this);
     const cx = GAME_WIDTH / 2;
     this.drawBackdrop();
-    const titlePanel = this.add.rectangle(cx, 165, 376, 166, 0x2c2927, 0.92).setStrokeStyle(2, 0x514a45);
+    this.add.rectangle(cx, 165, 376, 166, 0x2c2927, 0.92).setStrokeStyle(2, 0x514a45);
 
     this.add
       .text(cx, 130, 'SLIME DUNGEON', {
