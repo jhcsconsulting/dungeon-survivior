@@ -7,6 +7,7 @@ export interface Upgrade {
   basePrice: number;
   /** Price grows by this factor per purchase. */
   priceGrowth: number;
+  maxPurchases?: number;
   apply: (s: RunStats) => void;
 }
 
@@ -63,14 +64,99 @@ export const UPGRADES: Upgrade[] = [
     },
   },
   {
-    id: 'thick-membrane',
-    name: 'Thick Membrane',
-    description: '-10% damage taken, +100ms i-frames',
+    id: 'iron-shield',
+    name: 'Iron Shield',
+    description: '-10% damage taken, +100ms i-frames (max 6)',
     basePrice: 12,
     priceGrowth: 1.6,
+    maxPurchases: 6,
     apply: (s) => {
       s.damageTakenMult *= 0.9;
       s.iframesMs += 100;
+    },
+  },
+  {
+    id: 'radioactive-essence',
+    name: 'Radioactive Essence',
+    description: 'Damage enemies in a toxic 78px aura',
+    basePrice: 14,
+    priceGrowth: 1.55,
+    apply: (s) => {
+      s.radioactiveDamage += 10;
+      s.radioactiveRadius = Math.max(s.radioactiveRadius, 78) + 4;
+    },
+  },
+  {
+    id: 'slime-minions',
+    name: 'Slime Minions',
+    description: 'Deploy a bot that fires at nearby enemies',
+    basePrice: 18,
+    priceGrowth: 1.7,
+    apply: (s) => {
+      s.minions += 1;
+    },
+  },
+  {
+    id: 'flamethrower',
+    name: 'Flamethrower',
+    description: 'Breathe fire in your facing direction',
+    basePrice: 16,
+    priceGrowth: 1.6,
+    apply: (s) => {
+      s.flamethrowerDamage += 16;
+      s.flamethrowerRange = Math.max(s.flamethrowerRange, 142) + 8;
+      s.flamethrowerInterval = 520;
+    },
+  },
+  {
+    id: 'napalm-core',
+    name: 'Napalm Core',
+    description: '+12 flamethrower damage',
+    basePrice: 14,
+    priceGrowth: 1.5,
+    apply: (s) => {
+      s.flamethrowerDamage += 12;
+    },
+  },
+  {
+    id: 'wide-nozzle',
+    name: 'Wide Nozzle',
+    description: '+24 flamethrower range',
+    basePrice: 13,
+    priceGrowth: 1.5,
+    apply: (s) => {
+      s.flamethrowerRange += 24;
+    },
+  },
+  {
+    id: 'rapid-ignition',
+    name: 'Rapid Ignition',
+    description: 'Flamethrower fires 90ms faster',
+    basePrice: 15,
+    priceGrowth: 1.55,
+    apply: (s) => {
+      s.flamethrowerInterval = Math.max(220, s.flamethrowerInterval - 90);
+    },
+  },
+  {
+    id: 'bow',
+    name: 'Hunter Bow',
+    description: 'Unlock aimed arrows with infinite range',
+    basePrice: 20,
+    priceGrowth: 1.8,
+    maxPurchases: 1,
+    apply: (s) => {
+      s.bowOwned = true;
+    },
+  },
+  {
+    id: 'arrow-bundle',
+    name: 'Arrow Bundle',
+    description: '+8 arrows (not sold in Endless World)',
+    basePrice: 6,
+    priceGrowth: 1.35,
+    apply: (s) => {
+      s.arrows += 8;
     },
   },
 ];

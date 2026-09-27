@@ -24,6 +24,10 @@ export function roundScale(round: number): number {
   return 1 + 0.15 * (round - 1);
 }
 
+export function isBossRound(round: number): boolean {
+  return round > 0 && round % 5 === 0;
+}
+
 export function statsFor(kind: EnemyKind, round: number): EnemyStats {
   const base = BASE_STATS[kind];
   const scale = roundScale(round);

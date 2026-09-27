@@ -82,6 +82,27 @@ export function ensureTextures(scene: Phaser.Scene): void {
   g.fillCircle(5.5, 5.5, 2);
   g.generateTexture('coin', 14, 15);
 
+  // --- Permanent power core ---
+  g.clear();
+  g.fillStyle(0x0e7490, 1);
+  g.fillCircle(10, 10, 9);
+  g.fillStyle(0x67e8f9, 1);
+  g.fillCircle(10, 10, 6);
+  g.fillStyle(0xecfeff, 1);
+  g.fillTriangle(10, 3, 14, 10, 10, 17);
+  g.generateTexture('power-core', 20, 20);
+
+  // --- Arrow ---
+  g.clear();
+  g.lineStyle(3, 0xfef3c7, 1);
+  g.lineBetween(2, 10, 30, 10);
+  g.fillStyle(0xf59e0b, 1);
+  g.fillTriangle(30, 10, 22, 5, 22, 15);
+  g.lineStyle(2, 0x92400e, 1);
+  g.lineBetween(3, 10, 8, 5);
+  g.lineBetween(3, 10, 8, 15);
+  g.generateTexture('arrow', 32, 20);
+
   // --- Enemy projectile ---
   g.clear();
   g.fillStyle(0xc084fc, 0.4);
@@ -91,6 +112,30 @@ export function ensureTextures(scene: Phaser.Scene): void {
   g.fillStyle(0xffffff, 0.9);
   g.fillCircle(7, 7, 2);
   g.generateTexture('projectile', 14, 14);
+
+  // --- Endless world floor tile ---
+  g.clear();
+  g.fillStyle(0x151d24, 1);
+  g.fillRect(0, 0, 96, 96);
+  g.lineStyle(1, 0x22313a, 0.8);
+  g.strokeRect(0, 0, 96, 96);
+  g.lineBetween(48, 0, 48, 96);
+  g.lineBetween(0, 48, 96, 48);
+  g.generateTexture('floor-tile', 96, 96);
+
+  // --- Minion bot ---
+  g.clear();
+  g.fillStyle(0x0e7490, 1);
+  g.fillRoundedRect(2, 4, 28, 22, 6);
+  g.fillStyle(0x67e8f9, 1);
+  g.fillRoundedRect(6, 8, 20, 14, 4);
+  g.fillStyle(0x083344, 1);
+  g.fillCircle(12, 15, 2.5);
+  g.fillCircle(20, 15, 2.5);
+  g.lineStyle(2, 0x67e8f9, 1);
+  g.lineBetween(16, 4, 16, 0);
+  g.fillCircle(16, 0, 2);
+  g.generateTexture('minion', 32, 28);
 
   // --- Sword slash arc (rotated + scaled at use site) ---
   g.clear();
