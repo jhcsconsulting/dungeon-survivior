@@ -1,0 +1,12 @@
+{
+  "name": "adventures of a slime!",
+  "short_name": "adventures of a slime!",
+  "description": "Play as a heroic slime blob navigating dangerous dungeons. Battle diverse enemies, collect coins, and visit the marketplace to purchase powerful upgrades as you face increasingly difficult levels. Press space to attack and F to fire arrows if you unlocked a bow. Press shift to dash towards your enemies dealing damage and 2 to create a 3 second shield in the direction you are facing.",
+  "icons": [
+    { "src": "/slime.png", "sizes": "160x160", "type": "image/png" }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#020617"
+}
